@@ -1,0 +1,15 @@
+# Podfile
+platform :ios, '11.0'
+
+use_frameworks!
+
+target 'currency-converter' do
+  pod 'Alamofire', '~> 4.8.0'
+  pod 'AlamofireImage', '~> 3.5.0'
+  pod 'PromiseKit', '~> 6.8.0'
+  pod 'R.swift', '~> 5.0.0'
+  pod 'SnapKit', '~> 5.0.0'
+
+# Pods for currency-converter
+
+end
