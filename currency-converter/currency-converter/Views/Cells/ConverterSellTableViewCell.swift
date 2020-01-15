@@ -36,26 +36,22 @@ class ConverterSellTableViewCell: UITableViewCell {
    @IBAction private func didTapChangeCurrency(_ sender: Any) {
       viewModel.onTapUpdateCurrencySell?()
    }
+   
+   @IBAction private func textFieldDidChange(_ sender: Any) {
+      if let amount = amountLabel.text {
+         viewModel.didUpdateSellAmount(amount)
+      } else {
+         viewModel.didUpdateSellAmount("0")
+      }
+   }
 }
 
 // MARK: - UITextField
 
 extension ConverterSellTableViewCell: UITextFieldDelegate {
    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-
-      return true
-   }
-   
-   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-      if let amount = textField.text {
-         viewModel.didUpdateSellAmount(amount)
-      }
-      return true
-   }
-   
-   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-      textField.resignFirstResponder()
-      
+      viewModel.didTapTextField()
+      viewModel.didUpdateSellAmount("0")
       return true
    }
 }

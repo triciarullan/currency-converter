@@ -15,6 +15,8 @@ class ConverterViewController: UIViewController {
    private struct Constants {
       static let trackCellRowHeight: CGFloat = 60
       static let screenHeight: CGFloat = UIScreen.main.bounds.height
+      static let alertTitle = "Currency Converted"
+      static let alertMessageFail = "You cannot convert the same currency. Please try again."
    }
    
    @IBOutlet private weak var collectionView: UICollectionView!
@@ -54,24 +56,49 @@ class ConverterViewController: UIViewController {
       
    }
    
-   private func dismissPickerView() {
+   private func hidePickerView() {
       pickerContainerView.isHidden = true
    }
    
    private func showPickerView() {
       pickerContainerView.isHidden = false
+   }
+   
+   private func reloadTableRow() {
       
-//      UIView.animate(withDuration: 1.0, animations: {
-//         self.pickerContainerView.snp.makeConstraints{ maker in
-//            maker.height.equalTo(200)
-//         }
-//      }, completion: nil)
+      switch viewModel.pickerCurrency {
+      case .sell:
+         DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+         }
+      default:
+         DispatchQueue.main.async { [weak self] in
+            let index = IndexPath(row: 0, section: 1)
+            self?.tableView.reloadRows(at: [index], with: .automatic)
+         }
+      }
+   }
+   
+   private func showAlertMessage(_ message: String) {
+      let alert = UIAlertController(title: Constants.alertTitle,
+                                    message: message,
+                                    preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Done",
+                                    style: .cancel, handler: nil))
+      present(alert, animated: true)
    }
    
    // MARK: - IBActions
    
-   @IBAction func didTapDismiss(_ sender: Any) {
-      dismissPickerView()
+   @IBAction private func didTapSubmit(_ sender: Any) {
+      view.endEditing(true)
+      pickerContainerView.isHidden = true
+      
+      viewModel.convertSelectedCurrencyExchange()
+   }
+   
+   @IBAction private func didTapDismiss(_ sender: Any) {
+      hidePickerView()
    }
 
 }
@@ -126,17 +153,13 @@ extension ConverterViewController: UIPickerViewDelegate {
    }
    
    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-      
       switch viewModel.pickerCurrency {
       case .sell:
          viewModel.didUpdatePickerCurrencySell(row: row)
-      case .receive:
+      default:
          viewModel.didUpdatePickerCurrencyReceive(row: row)
       }
-     
-      tableView.reloadData()
    }
-   
 }
 
 // MARK: - UIPickerViewDataSource
@@ -155,19 +178,29 @@ extension ConverterViewController: UIPickerViewDataSource {
 // MARK: - CurrencyViewModelDelegate
 
 extension ConverterViewController: CurrencyViewModelDelegate {
-   func currencyViewModelDidTapCurrencyPicker(_: CurrencyViewModel, row: Int) {
+   func currencyViewModelDidTapTextField(_ viewModel: CurrencyViewModel) {
+      hidePickerView()
+   }
+   
+   func currencyViewModelNeedsReloadData(_ viewModel: CurrencyViewModel) {
+      reloadTableRow()
+   }
+   
+   func currencyViewModelDidSubmitCurrencyExchange(_ viewModel: CurrencyViewModel, message: String) {
+      showAlertMessage(message)
+   }
+   
+   func currencyViewModelDidTapCurrencyPicker(_ viewModel: CurrencyViewModel, row: Int) {
       pickerView.selectRow(row, inComponent: 0, animated: true)
       view.endEditing(true)
       showPickerView()
    }
    
-   func currencyViewModelDidUpdateCurrencyPicker(_: CurrencyViewModel, pickerCurrency: PickerCurrency) {    
-      DispatchQueue.main.async { [weak self] in
-         self?.tableView.reloadData()
-      }
+   func currencyViewModelDidUpdateCurrencyPicker(_ viewModel: CurrencyViewModel, pickerCurrency: PickerCurrency) {
+      reloadTableRow()
    }
    
-   func currencyViewModelDidTapCurrencyPicker( _ : CurrencyViewModel) {
+   func currencyViewModelDidTapCurrencyPicker(_ viewModel: CurrencyViewModel) {
       showPickerView()
    }
 }

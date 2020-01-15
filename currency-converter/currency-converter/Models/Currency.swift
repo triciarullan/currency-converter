@@ -74,7 +74,7 @@ struct Currency: Codable {
       case hrk = "HRK"
       case jpy = "JPY"
       case thb = "THB"
-      case chf = "CHK"
+      case chf = "CHF"
       case sgd = "SGD"
       case pln = "PLN"
       case bgn = "BGN"
@@ -94,7 +94,7 @@ struct Currency: Codable {
 
 
 struct CurrencyExchangeModel {
-   var model: CurrencyModel
+   var model: CurrencyModel?
    let fee: Double = 0.007
-   var count: Int = 0
+   var transactionCount: Int = 0
 }

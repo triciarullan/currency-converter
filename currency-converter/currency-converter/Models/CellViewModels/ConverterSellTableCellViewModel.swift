@@ -9,7 +9,8 @@
 import UIKit
 
 protocol ConverterSellTableCellViewModelDelegate: class {
-   func converterSellTableCellViewModelDidUpdateAmount( _ : Double)
+   func converterSellTableCellViewModelDidTapTextField(_ viewModel: ConverterSellTableCellViewModel)
+   func converterSellTableCellViewModelDidUpdateAmount(_ viewModel: ConverterSellTableCellViewModel, amount: Int)
 }
 
 class ConverterSellTableCellViewModel {
@@ -17,7 +18,7 @@ class ConverterSellTableCellViewModel {
    weak var delegate: ConverterSellTableCellViewModelDelegate?
    
    init(currency: String,
-        amount: Double,
+        amount: Int,
         onTapUpdateCurrencySell: (() -> Void)?) {
       self.currency = currency
       self.amount = amount
@@ -31,13 +32,19 @@ class ConverterSellTableCellViewModel {
       return "\(amount)"
    }
    
+   func didTapTextField() {
+      delegate?.converterSellTableCellViewModelDidTapTextField(self)
+   }
+   
    func didUpdateSellAmount( _ amountString : String) {
-      if let amount = Double(amountString) {
-         delegate?.converterSellTableCellViewModelDidUpdateAmount(amount)
+      if let amount = Int(amountString) {
+         delegate?.converterSellTableCellViewModelDidUpdateAmount(self, amount: amount)
+      } else {
+         delegate?.converterSellTableCellViewModelDidUpdateAmount(self, amount: 0)
       }
    }
    
    // MARK: - Privates
    
-   private let amount: Double
+   private let amount: Int
 }
