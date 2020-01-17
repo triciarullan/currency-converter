@@ -14,7 +14,7 @@ protocol CurrencyViewModelDelegate: class {
    func currencyViewModelDidExchangeCurrencyFail(_ viewModel: CurrencyViewModel, message: String)
    func currencyViewModelNeedsReloadData(_ viewModel: CurrencyViewModel)
    func currencyViewModelDidTapTextField(_ viewModel: CurrencyViewModel)
-   func currencyViewModelDidExchangeCurrencySuccess(_ viewModel: CurrencyViewModel, currency: Currency, transactionCount: Int, message: String)
+   func currencyViewModelDidExchangeCurrencySuccess(_ viewModel: CurrencyViewModel, currency: Currency, message: String)
 }
 
 public enum PickerCurrency {
@@ -106,6 +106,10 @@ class CurrencyViewModel {
       }
    }
    
+   private var hasTransferFee: Bool {
+      return transactionCount >= 5
+   }
+   
    private var transactionError: TransactionErrorType = .none
    private var transactionErrorTypeMessage: String {
       var message = R.string.localizable.pleaseTryAgain()
@@ -139,7 +143,7 @@ class CurrencyViewModel {
    }
    
    private var transferFee: Double {
-      return amountToSellDouble * 0.007
+      return (amountToSellDouble * 0.007).rounded(toPlaces: 4)
    }
    
    private var onTapUpdateCurrencySell: () -> Void {
@@ -211,7 +215,7 @@ class CurrencyViewModel {
    }
    
    private func isBalanceSufficient(balance: Double) -> Bool {
-      if transactionCount > 5 {
+      if transactionCount >= 5 {
          let availBalance = balance - amountToSellDouble - transferFee
          if availBalance < 0 {
             transactionError = .insufficientBalance
@@ -233,7 +237,6 @@ class CurrencyViewModel {
    }
    
    @objc private func updateCurrencyExchange() {
-      
       guard let baseCurrency = CurrencyExchange(rawValue: pickerCurrencyData[pickerCurrencySellRowPath])?.rawValue else {
          return
       }
@@ -294,231 +297,429 @@ class CurrencyViewModel {
       case .EUR:
          if var balance = model.eur,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.eur = balance
             isExchangeCurrencySuccess = true
          }
       case .CAD:
          if var balance = model.cad,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.cad = balance
             isExchangeCurrencySuccess = true
          }
       case .HKD:
          if var balance = model.hkd,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.hkd = balance
             isExchangeCurrencySuccess = true
          }
       case .ISK:
          if var balance = model.isk,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.isk = balance
             isExchangeCurrencySuccess = true
          }
       case .PHP:
          if var balance = model.php,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.php = balance
             isExchangeCurrencySuccess = true
          }
       case .DKK:
          if var balance = model.dkk,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.dkk = balance
             isExchangeCurrencySuccess = true
          }
       case .HUF:
          if var balance = model.huf,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.huf = balance
             isExchangeCurrencySuccess = true
          }
       case .CZK:
          if var balance = model.czk,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.czk = balance
             isExchangeCurrencySuccess = true
          }
       case .AUD:
          if var balance = model.aud,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.aud = balance
             isExchangeCurrencySuccess = true
          }
       case .RON:
          if var balance = model.ron,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.ron = balance
             isExchangeCurrencySuccess = true
          }
       case .SEK:
          if var balance = model.sek,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.sek = balance
             isExchangeCurrencySuccess = true
          }
       case .IDR:
          if var balance = model.idr,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.idr = balance
             isExchangeCurrencySuccess = true
          }
       case .INR:
          if var balance = model.inr,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.inr = balance
             isExchangeCurrencySuccess = true
          }
       case .BRL:
          if var balance = model.brl,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.brl = balance
             isExchangeCurrencySuccess = true
          }
       case .RUB:
          if var balance = model.rub,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.rub = balance
             isExchangeCurrencySuccess = true
          }
       case .HRK:
          if var balance = model.hrk,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.hrk = balance
             isExchangeCurrencySuccess = true
          }
       case .JPY:
          if var balance = model.jpy,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.jpy = balance
             isExchangeCurrencySuccess = true
          }
       case .THB:
          if var balance = model.thb,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.thb = balance
             isExchangeCurrencySuccess = true
          }
       case .CHF:
          if var balance = model.chf,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.chf = balance
             isExchangeCurrencySuccess = true
          }
       case .SGD:
          if var balance = model.sgd,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.sgd = balance
             isExchangeCurrencySuccess = true
          }
       case .PLN:
          if var balance = model.pln,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.pln = balance
             isExchangeCurrencySuccess = true
          }
       case .BGN:
          if var balance = model.bgn,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.bgn = balance
             isExchangeCurrencySuccess = true
          }
       case .TRY:
          if var balance = model.tur,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.tur = balance
             isExchangeCurrencySuccess = true
          }
       case .CNY:
          if var balance = model.cny,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.cny = balance
             isExchangeCurrencySuccess = true
          }
       case .NOK:
          if var balance = model.nok,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.nok = balance
             isExchangeCurrencySuccess = true
          }
       case .NZD:
          if var balance = model.nzd,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.nzd = balance
             isExchangeCurrencySuccess = true
          }
       case .ZAR:
          if var balance = model.zar,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.zar = balance
             isExchangeCurrencySuccess = true
          }
       case .USD:
          if var balance = model.usd,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.usd = balance
             isExchangeCurrencySuccess = true
          }
       case .MXN:
          if var balance = model.mxn,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+           
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.mxn = balance
             isExchangeCurrencySuccess = true
          }
       case .ILS:
          if var balance = model.ils,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.ils = balance
             isExchangeCurrencySuccess = true
          }
       case .GBP:
          if var balance = model.gbp,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.gbp = balance
             isExchangeCurrencySuccess = true
          }
       case .KRW:
          if var balance = model.krw,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.krw = balance
             isExchangeCurrencySuccess = true
          }
       case .MYR:
          if var balance = model.myr,
             isBalanceSufficient(balance: balance) {
-            balance -= amountToSellDouble
+            
+            var fee: Double = 0
+            if hasTransferFee {
+               fee = transferFee
+            }
+            
+            balance -= (amountToSellDouble + fee)
             model.myr = balance
             isExchangeCurrencySuccess = true
          }
@@ -700,12 +901,11 @@ class CurrencyViewModel {
       }
       
       var message = R.string.localizable.youHaveSuccessfullyConvertedToKindlyCheckYourNewBalance("\(amountToSell) \(currencySell.rawValue)", "\(amountToReceive) \(currencyReceive.rawValue)")
-      if transactionCount > 5 {
+      if transactionCount >= 5 {
          message = R.string.localizable.youHaveSuccessfullyConvertedToCommissionFeeIsKindlyCheckYourNewBalance("\(amountToSell) \(currencySell.rawValue)", "\(amountToReceive) \(currencyReceive.rawValue)", "\(transferFee) \(currencySell.rawValue)")
       }
       
       delegate?.currencyViewModelDidExchangeCurrencySuccess(self, currency: model,
-                                                            transactionCount: transactionCount,
                                                             message: message)
       amountToSell = 0
       amountToReceive = 0

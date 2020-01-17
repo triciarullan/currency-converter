@@ -1,20 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "98FD8344-6749-4A93-8A42-DCB08EF13DE4"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "A0E4E48B-7668-4833-B946-7CC140DFB907"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "currency-converter/Models/ViewModels/CurrencyViewModel.swift"
-            timestampString = "600939682.727713"
+            timestampString = "600942310.664579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "isBalanceSufficient(balance:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3003B14F-1EDD-47E6-A11A-A34A0D3ABFDA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "currency-converter/Models/ViewModels/CurrencyViewModel.swift"
+            timestampString = "600942310.665341"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "isBalanceSufficient(balance:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF24802C-5A5C-4213-B5C7-FC77E9F09B4A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "currency-converter/Models/ViewModels/CurrencyViewModel.swift"
+            timestampString = "600942310.665972"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "isBalanceSufficient(balance:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4B86C8F-B2AA-4FDE-96D3-26C68DC2DBFC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "currency-converter/Models/ViewModels/CurrencyViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "913"
+            endingLineNumber = "913"
             landmarkName = "submitSelectedCurrencyExchanage()"
             landmarkType = "7">
          </BreakpointContent>

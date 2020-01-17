@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import SnapKit
 import Foundation
+import MBProgressHUD
 
 enum TransactionType {
    case none
@@ -52,6 +52,8 @@ class ConverterViewController: UIViewController {
       viewModel.delegate = self
       viewModel.getCurrencyExchangeFromAPI()
       viewModel.recordModel = collectionViewModel.recordCurrency
+      
+      submitBtn.isEnabled = false
    }
 
    private func configureTableView() {
@@ -81,7 +83,6 @@ class ConverterViewController: UIViewController {
    }
    
    private func reloadTableRow() {
-      
       switch viewModel.pickerCurrency {
       case .sell:
          DispatchQueue.main.async { [weak self] in
@@ -93,6 +94,9 @@ class ConverterViewController: UIViewController {
             self?.tableView.reloadRows(at: [index], with: .automatic)
          }
       }
+      
+      submitBtn.isEnabled = true
+      dismissHUD(isAnimated: true)
    }
    
    private func showAlertMessage(_ message: String) {
@@ -119,6 +123,8 @@ class ConverterViewController: UIViewController {
    @IBAction private func didTapSubmit(_ sender: Any) {
       view.endEditing(true)
       pickerContainerView.isHidden = true
+      submitBtn.isEnabled = false
+      showHUD(progressLabel: "")
       viewModel.submitSelectedCurrencyExchanage()
    }
    
@@ -178,6 +184,9 @@ extension ConverterViewController: UIPickerViewDelegate {
    }
    
    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+      showHUD(progressLabel: "")
+      submitBtn.isEnabled = false
+      
       switch viewModel.pickerCurrency {
       case .sell:
          viewModel.didUpdatePickerCurrencySell(row: row)
@@ -203,16 +212,20 @@ extension ConverterViewController: UIPickerViewDataSource {
 // MARK: - CurrencyViewModelDelegate
 
 extension ConverterViewController: CurrencyViewModelDelegate {
-   func currencyViewModelDidExchangeCurrencySuccess(_ viewModel: CurrencyViewModel, currency: Currency, transactionCount: Int, message: String) {
+   func currencyViewModelDidExchangeCurrencySuccess(_ viewModel: CurrencyViewModel, currency: Currency, message: String) {
       collectionViewModel.recordCurrency = currency
-      collectionViewModel.transactionCount = transactionCount
       
+      dismissHUD(isAnimated: true)
+      submitBtn.isEnabled = true
       transactionType = .success
       showAlertMessage(message)
    }
    
    func currencyViewModelDidExchangeCurrencyFail(_ viewModel: CurrencyViewModel, message: String) {
       transactionType = .error
+      
+      submitBtn.isEnabled = true
+      dismissHUD(isAnimated: true)
       showAlertMessage(message)
    }
    

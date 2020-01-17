@@ -35,7 +35,6 @@ class CurrencyBalanceCollectionViewModel {
       }
    }
    
-   var transactionCount: Int = 0
    weak var delegate: CurrencyBalanceCollectionViewModelDelegate?
    
    // MARK: - Privates
