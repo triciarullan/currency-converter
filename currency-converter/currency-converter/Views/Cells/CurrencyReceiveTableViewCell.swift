@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ConverterReceiveTableViewCell: UITableViewCell {
+class CurrencyReceiveTableViewCell: UITableViewCell {
 
    @IBOutlet private weak var amountLabel: UILabel!
    @IBOutlet private weak var currencyLabel: UILabel!
    
-   var viewModel: ConverterReceiveTableCellViewModel! {
+   var viewModel: CurrencyReceiveTableCellViewModel! {
       didSet {
          bindViewModel()
       }
@@ -40,9 +40,9 @@ class ConverterReceiveTableViewCell: UITableViewCell {
 
 // MARK: - CurrencyItemModelBindableType
 
-extension ConverterReceiveTableViewCell: CurrencyItemModelBindableType {
+extension CurrencyReceiveTableViewCell: CurrencyItemModelBindableType {
    func setItemModel(_ itemModel: CurrencyItemModel) {
-      guard let viewModel: ConverterReceiveTableCellViewModel = itemModel.viewModel() else {
+      guard let viewModel: CurrencyReceiveTableCellViewModel = itemModel.viewModel() else {
          fatalError("View model mismatched!")
       }
       self.viewModel = viewModel

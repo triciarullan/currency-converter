@@ -85,7 +85,7 @@ class CurrencyViewModel {
       return pickerData
    }
    
-   var recordModel: Currency?
+   var recordCurrency: Currency?
    
    // MARK: - Privates
    private var dataService: DataService?
@@ -183,13 +183,13 @@ class CurrencyViewModel {
    private func makeSectionModels() -> [CurrencySectionModel] {
       var sectionModels = [CurrencySectionModel]()
       
-      let sellModel = ConverterSellTableCellViewModel(currency: pickerData[pickerCurrencySellRowPath],
+      let sellModel = CurrencySellTableCellViewModel(currency: pickerData[pickerCurrencySellRowPath],
                                                       amount: amountToSell,
                                                       onTapUpdateCurrencySell: onTapUpdateCurrencySell)
       sellModel.delegate = self
       sectionModels.append(CurrencySectionModel(items: [.sell(viewModel: sellModel)]))
       
-      let receiveModel = ConverterReceiveTableCellViewModel(currency: pickerData[pickerCurrencyReceiveRowPath],
+      let receiveModel = CurrencyReceiveTableCellViewModel(currency: pickerData[pickerCurrencyReceiveRowPath],
                                                             amount: amountToReceive,
                                                             onTapUpdateCurrencyReceive: onTapUpdateCurrencyReceive)
       sectionModels.append(CurrencySectionModel(items: [.receive(viewModel: receiveModel)]))
@@ -288,7 +288,7 @@ class CurrencyViewModel {
       
       guard let currencySell = currencySell,
          let currencyReceive = currencyReceive,
-         let model = recordModel else {
+         let model = recordCurrency else {
             return
       }
       
@@ -917,10 +917,9 @@ class CurrencyViewModel {
    
    func convertSelectedCurrencyExchange() {
       
-      guard let currencySell = CurrencyExchange(rawValue: pickerCurrencyData[pickerCurrencySellRowPath]),
-         let currencyReceive = CurrencyExchange(rawValue: pickerCurrencyData[pickerCurrencyReceiveRowPath]),
-         let model = currencyModel else {
-            return
+      guard let currencyReceive = currencyReceive,
+            let model = currencyModel else {
+         return
       }
       
       var convertedRate: Double = 0
@@ -1067,12 +1066,12 @@ class CurrencyViewModel {
    
 // MARK: - ConverterSellTableCellViewModelDelegate
 
-extension CurrencyViewModel: ConverterSellTableCellViewModelDelegate {
-   func converterSellTableCellViewModelDidTapTextField(_ viewModel: ConverterSellTableCellViewModel) {
+extension CurrencyViewModel: CurrencySellTableCellViewModelDelegate {
+   func converterSellTableCellViewModelDidTapTextField(_ viewModel: CurrencySellTableCellViewModel) {
       delegate?.currencyViewModelDidTapTextField(self)
    }
    
-   func converterSellTableCellViewModelDidUpdateAmount(_ viewModel: ConverterSellTableCellViewModel, amount: Int) {
+   func converterSellTableCellViewModelDidUpdateAmount(_ viewModel: CurrencySellTableCellViewModel, amount: Int) {
       
       pickerCurrency = .none
       if amount == amountToSell {

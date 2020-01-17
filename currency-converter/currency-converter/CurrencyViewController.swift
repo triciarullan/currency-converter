@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CurrencyViewController.swift
 //  currency-converter
 //
 //  Created by Tric Rullan on 1/7/20.
@@ -16,7 +16,7 @@ enum TransactionType {
    case error
 }
 
-class ConverterViewController: UIViewController {
+class CurrencyViewController: UIViewController {
    
    private struct Constants {
       static let currencyRowHeight: CGFloat = 60
@@ -51,14 +51,14 @@ class ConverterViewController: UIViewController {
       viewModel = CurrencyViewModel()
       viewModel.delegate = self
       viewModel.getCurrencyExchangeFromAPI()
-      viewModel.recordModel = collectionViewModel.recordCurrency
+      viewModel.recordCurrency = collectionViewModel.recordCurrency
       
       submitBtn.isEnabled = false
    }
 
    private func configureTableView() {
-      tableView.register(R.nib.converterSellTableViewCell)
-      tableView.register(R.nib.converterReceiveTableViewCell)
+      tableView.register(R.nib.currencySellTableViewCell)
+      tableView.register(R.nib.currencyReceiveTableViewCell)
    }
    
    private func configureCollectionView() {
@@ -95,8 +95,17 @@ class ConverterViewController: UIViewController {
          }
       }
       
+      dismissHUD()
+   }
+   
+   private func dismissHUD() {
       submitBtn.isEnabled = true
       dismissHUD(isAnimated: true)
+   }
+   
+   private func showHUD() {
+      submitBtn.isEnabled = false
+      showHUD(progressLabel: "")
    }
    
    private func showAlertMessage(_ message: String) {
@@ -123,8 +132,7 @@ class ConverterViewController: UIViewController {
    @IBAction private func didTapSubmit(_ sender: Any) {
       view.endEditing(true)
       pickerContainerView.isHidden = true
-      submitBtn.isEnabled = false
-      showHUD(progressLabel: "")
+      showHUD()
       viewModel.submitSelectedCurrencyExchanage()
    }
    
@@ -136,7 +144,7 @@ class ConverterViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-extension ConverterViewController: UITableViewDataSource {
+extension CurrencyViewController: UITableViewDataSource {
    
    func numberOfSections(in tableView: UITableView) -> Int {
       return viewModel.sectionModels.count
@@ -160,7 +168,7 @@ extension ConverterViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension ConverterViewController: UITableViewDelegate {
+extension CurrencyViewController: UITableViewDelegate {
    
    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
       return .leastNormalMagnitude
@@ -177,15 +185,14 @@ extension ConverterViewController: UITableViewDelegate {
 
 // MARK: - UIPickerViewDelegate
 
-extension ConverterViewController: UIPickerViewDelegate {
+extension CurrencyViewController: UIPickerViewDelegate {
    
    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
       return viewModel.pickerCurrencyData[row]
    }
    
    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-      showHUD(progressLabel: "")
-      submitBtn.isEnabled = false
+      showHUD()
       
       switch viewModel.pickerCurrency {
       case .sell:
@@ -198,7 +205,7 @@ extension ConverterViewController: UIPickerViewDelegate {
 
 // MARK: - UIPickerViewDataSource
 
-extension ConverterViewController: UIPickerViewDataSource {
+extension CurrencyViewController: UIPickerViewDataSource {
    
    func numberOfComponents(in pickerView: UIPickerView) -> Int {
       return 1
@@ -211,12 +218,11 @@ extension ConverterViewController: UIPickerViewDataSource {
 
 // MARK: - CurrencyViewModelDelegate
 
-extension ConverterViewController: CurrencyViewModelDelegate {
+extension CurrencyViewController: CurrencyViewModelDelegate {
    func currencyViewModelDidExchangeCurrencySuccess(_ viewModel: CurrencyViewModel, currency: Currency, message: String) {
       collectionViewModel.recordCurrency = currency
       
-      dismissHUD(isAnimated: true)
-      submitBtn.isEnabled = true
+      dismissHUD()
       transactionType = .success
       showAlertMessage(message)
    }
@@ -224,8 +230,7 @@ extension ConverterViewController: CurrencyViewModelDelegate {
    func currencyViewModelDidExchangeCurrencyFail(_ viewModel: CurrencyViewModel, message: String) {
       transactionType = .error
       
-      submitBtn.isEnabled = true
-      dismissHUD(isAnimated: true)
+      dismissHUD()
       showAlertMessage(message)
    }
    
@@ -252,7 +257,7 @@ extension ConverterViewController: CurrencyViewModelDelegate {
    }
 }
 
-extension ConverterViewController: CurrencyBalanceCollectionViewModelDelegate {
+extension CurrencyViewController: CurrencyBalanceCollectionViewModelDelegate {
    func currencyBalanceCollectionViewModelNeedsReload(_ viewModel: CurrencyBalanceCollectionViewModel) {
       DispatchQueue.main.async { [weak self] in
          self?.collectionView.reloadData()
@@ -260,13 +265,13 @@ extension ConverterViewController: CurrencyBalanceCollectionViewModelDelegate {
    }
    
    func currencyBalanceCollectionViewModelDidUpdate(viewModel model: CurrencyBalanceCollectionViewModel, recordCurrency: Currency) {
-      viewModel.recordModel = recordCurrency
+      viewModel.recordCurrency = recordCurrency
    }
 }
 
 // MARK: - UICollectionViewDataSource
 
-extension ConverterViewController: UICollectionViewDataSource {
+extension CurrencyViewController: UICollectionViewDataSource {
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       return collectionViewModel.sectionModels[section].items.count
    }
@@ -290,7 +295,7 @@ extension ConverterViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension ConverterViewController: UICollectionViewDelegateFlowLayout {
+extension CurrencyViewController: UICollectionViewDelegateFlowLayout {
    func collectionView(_ collectionView: UICollectionView,
                        layout collectionViewLayout: UICollectionViewLayout,
                        sizeForItemAt indexPath: IndexPath) -> CGSize {

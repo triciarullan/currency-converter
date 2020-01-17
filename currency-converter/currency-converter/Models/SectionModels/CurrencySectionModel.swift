@@ -13,18 +13,17 @@ struct CurrencySectionModel {
 }
 
 enum CurrencyItemModel {
-   case sell(viewModel: ConverterSellTableCellViewModel)
-   case receive(viewModel: ConverterReceiveTableCellViewModel)
-   
+   case sell(viewModel: CurrencySellTableCellViewModel)
+   case receive(viewModel: CurrencyReceiveTableCellViewModel)
 }
 
 extension CurrencyItemModel {
    var reuseIdentifier: String {
       switch self {
       case .sell:
-         return R.nib.converterSellTableViewCell.identifier
+         return R.nib.currencySellTableViewCell.identifier
       case .receive:
-         return R.nib.converterReceiveTableViewCell.identifier
+         return R.nib.currencyReceiveTableViewCell.identifier
       }
    }
    

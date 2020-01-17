@@ -1,5 +1,5 @@
 //
-//  ConverterSellCurrencyTableViewCell.swift
+//  CurrencySellTableViewCell.swift
 //  currency-converter
 //
 //  Created by Tric Rullan on 1/8/20.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ConverterSellTableViewCell: UITableViewCell {
+class CurrencySellTableViewCell: UITableViewCell {
 
    @IBOutlet private weak var currencyLabel: UILabel!
    @IBOutlet private weak var amountLabel: UITextField!
    
-   var viewModel: ConverterSellTableCellViewModel! {
+   var viewModel: CurrencySellTableCellViewModel! {
       didSet {
          bindViewModel()
       }
@@ -48,7 +48,7 @@ class ConverterSellTableViewCell: UITableViewCell {
 
 // MARK: - UITextField
 
-extension ConverterSellTableViewCell: UITextFieldDelegate {
+extension CurrencySellTableViewCell: UITextFieldDelegate {
    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
       viewModel.didTapTextField()
       viewModel.didUpdateSellAmount("0")
@@ -58,9 +58,9 @@ extension ConverterSellTableViewCell: UITextFieldDelegate {
 
 // MARK: - CurrencyItemModelBindableType
 
-extension ConverterSellTableViewCell: CurrencyItemModelBindableType {
+extension CurrencySellTableViewCell: CurrencyItemModelBindableType {
    func setItemModel(_ itemModel: CurrencyItemModel) {
-      guard let viewModel: ConverterSellTableCellViewModel = itemModel.viewModel() else {
+      guard let viewModel: CurrencySellTableCellViewModel = itemModel.viewModel() else {
          fatalError("View model mismatched!")
       }
       self.viewModel = viewModel

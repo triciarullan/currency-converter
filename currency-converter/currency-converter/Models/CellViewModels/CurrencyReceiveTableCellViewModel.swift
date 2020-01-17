@@ -1,5 +1,5 @@
 //
-//  ConverterReceiveTableCellViewModel.swift
+//  CurrencyReceiveTableCellViewModel.swift
 //  currency-converter
 //
 //  Created by Tric Rullan on 1/8/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ConverterReceiveTableCellViewModel {
+struct CurrencyReceiveTableCellViewModel {
 
    init(currency: String,
         amount: Double,

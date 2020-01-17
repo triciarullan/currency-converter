@@ -45,24 +45,12 @@ struct R: Rswift.Validatable {
   
   /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
-    /// Nib `ConverterReceiveTableViewCell`.
-    static let converterReceiveTableViewCell = _R.nib._ConverterReceiveTableViewCell()
-    /// Nib `ConverterSellTableViewCell`.
-    static let converterSellTableViewCell = _R.nib._ConverterSellTableViewCell()
     /// Nib `CurrencyBalanceCollectionViewCell`.
     static let currencyBalanceCollectionViewCell = _R.nib._CurrencyBalanceCollectionViewCell()
-    
-    /// `UINib(name: "ConverterReceiveTableViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.converterReceiveTableViewCell) instead")
-    static func converterReceiveTableViewCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.converterReceiveTableViewCell)
-    }
-    
-    /// `UINib(name: "ConverterSellTableViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.converterSellTableViewCell) instead")
-    static func converterSellTableViewCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.converterSellTableViewCell)
-    }
+    /// Nib `CurrencyReceiveTableViewCell`.
+    static let currencyReceiveTableViewCell = _R.nib._CurrencyReceiveTableViewCell()
+    /// Nib `CurrencySellTableViewCell`.
+    static let currencySellTableViewCell = _R.nib._CurrencySellTableViewCell()
     
     /// `UINib(name: "CurrencyBalanceCollectionViewCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.currencyBalanceCollectionViewCell) instead")
@@ -70,16 +58,28 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.currencyBalanceCollectionViewCell)
     }
     
-    static func converterReceiveTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ConverterReceiveTableViewCell? {
-      return R.nib.converterReceiveTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ConverterReceiveTableViewCell
+    /// `UINib(name: "CurrencyReceiveTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.currencyReceiveTableViewCell) instead")
+    static func currencyReceiveTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.currencyReceiveTableViewCell)
     }
     
-    static func converterSellTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ConverterSellTableViewCell? {
-      return R.nib.converterSellTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ConverterSellTableViewCell
+    /// `UINib(name: "CurrencySellTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.currencySellTableViewCell) instead")
+    static func currencySellTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.currencySellTableViewCell)
     }
     
     static func currencyBalanceCollectionViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencyBalanceCollectionViewCell? {
       return R.nib.currencyBalanceCollectionViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencyBalanceCollectionViewCell
+    }
+    
+    static func currencyReceiveTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencyReceiveTableViewCell? {
+      return R.nib.currencyReceiveTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencyReceiveTableViewCell
+    }
+    
+    static func currencySellTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencySellTableViewCell? {
+      return R.nib.currencySellTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencySellTableViewCell
     }
     
     fileprivate init() {}
@@ -89,10 +89,10 @@ struct R: Rswift.Validatable {
   struct reuseIdentifier {
     /// Reuse identifier `CurrencyBalanceCollectionViewCell`.
     static let currencyBalanceCollectionViewCell: Rswift.ReuseIdentifier<CurrencyBalanceCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "CurrencyBalanceCollectionViewCell")
-    /// Reuse identifier `converterReceiveTableViewCell`.
-    static let converterReceiveTableViewCell: Rswift.ReuseIdentifier<ConverterReceiveTableViewCell> = Rswift.ReuseIdentifier(identifier: "converterReceiveTableViewCell")
-    /// Reuse identifier `converterSellTableViewCell`.
-    static let converterSellTableViewCell: Rswift.ReuseIdentifier<ConverterSellTableViewCell> = Rswift.ReuseIdentifier(identifier: "converterSellTableViewCell")
+    /// Reuse identifier `currencyReceiveTableViewCell`.
+    static let currencyReceiveTableViewCell: Rswift.ReuseIdentifier<CurrencyReceiveTableViewCell> = Rswift.ReuseIdentifier(identifier: "currencyReceiveTableViewCell")
+    /// Reuse identifier `currencySellTableViewCell`.
+    static let currencySellTableViewCell: Rswift.ReuseIdentifier<CurrencySellTableViewCell> = Rswift.ReuseIdentifier(identifier: "currencySellTableViewCell")
     
     fileprivate init() {}
   }
@@ -219,50 +219,8 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
-      try _ConverterReceiveTableViewCell.validate()
-      try _ConverterSellTableViewCell.validate()
-    }
-    
-    struct _ConverterReceiveTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = ConverterReceiveTableViewCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "converterReceiveTableViewCell"
-      let name = "ConverterReceiveTableViewCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ConverterReceiveTableViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ConverterReceiveTableViewCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "btn_receive", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn_receive' is used in nib 'ConverterReceiveTableViewCell', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "icon_drop_down", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_drop_down' is used in nib 'ConverterReceiveTableViewCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _ConverterSellTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
-      typealias ReusableType = ConverterSellTableViewCell
-      
-      let bundle = R.hostingBundle
-      let identifier = "converterSellTableViewCell"
-      let name = "ConverterSellTableViewCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ConverterSellTableViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ConverterSellTableViewCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "btn_sell", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn_sell' is used in nib 'ConverterSellTableViewCell', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "icon_drop_down", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_drop_down' is used in nib 'ConverterSellTableViewCell', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-        }
-      }
-      
-      fileprivate init() {}
+      try _CurrencyReceiveTableViewCell.validate()
+      try _CurrencySellTableViewCell.validate()
     }
     
     struct _CurrencyBalanceCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
@@ -274,6 +232,48 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencyBalanceCollectionViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencyBalanceCollectionViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _CurrencyReceiveTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = CurrencyReceiveTableViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "currencyReceiveTableViewCell"
+      let name = "CurrencyReceiveTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencyReceiveTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencyReceiveTableViewCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "btn_receive", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn_receive' is used in nib 'CurrencyReceiveTableViewCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "icon_drop_down", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_drop_down' is used in nib 'CurrencyReceiveTableViewCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _CurrencySellTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = CurrencySellTableViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "currencySellTableViewCell"
+      let name = "CurrencySellTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencySellTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencySellTableViewCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "btn_sell", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn_sell' is used in nib 'CurrencySellTableViewCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "icon_drop_down", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_drop_down' is used in nib 'CurrencySellTableViewCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
       }
       
       fileprivate init() {}

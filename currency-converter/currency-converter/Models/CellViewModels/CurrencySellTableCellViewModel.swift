@@ -1,5 +1,5 @@
 //
-//  ConverterSellTableCellViewModel.swift
+//  CurrencySellTableCellViewModel.swift
 //  currency-converter
 //
 //  Created by Tric Rullan on 1/8/20.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol ConverterSellTableCellViewModelDelegate: class {
-   func converterSellTableCellViewModelDidTapTextField(_ viewModel: ConverterSellTableCellViewModel)
-   func converterSellTableCellViewModelDidUpdateAmount(_ viewModel: ConverterSellTableCellViewModel, amount: Int)
+protocol CurrencySellTableCellViewModelDelegate: class {
+   func converterSellTableCellViewModelDidTapTextField(_ viewModel: CurrencySellTableCellViewModel)
+   func converterSellTableCellViewModelDidUpdateAmount(_ viewModel: CurrencySellTableCellViewModel, amount: Int)
 }
 
-class ConverterSellTableCellViewModel {
+class CurrencySellTableCellViewModel {
 
-   weak var delegate: ConverterSellTableCellViewModelDelegate?
+   weak var delegate: CurrencySellTableCellViewModelDelegate?
    
    init(currency: String,
         amount: Int,
