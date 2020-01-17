@@ -14,7 +14,7 @@
 
 // Alert Message Error
 "You cannot convert the same currency. Please try again." = "You cannot convert the same currency. Please try again.";
-"Your balance is insufficient. Please try again." = "You cannot convert the same currency. Please try again.";
+"Your balance is insufficient. Please try again." = "Your balance is insufficient. Please try again.";
 "Your amount to sell is invalid. Please try again." = "Your amount to sell is invalid. Please try again.";
 "Please try again" = "Please try again";
 

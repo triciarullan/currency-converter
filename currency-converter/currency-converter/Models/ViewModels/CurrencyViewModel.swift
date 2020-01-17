@@ -217,6 +217,12 @@ class CurrencyViewModel {
             transactionError = .insufficientBalance
             return false
          }
+      } else {
+         let availBalance = balance - amountToSellDouble
+         if availBalance < 0 {
+            transactionError = .insufficientBalance
+            return false
+         }
       }
       return true
    }

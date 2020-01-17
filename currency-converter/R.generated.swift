@@ -133,14 +133,14 @@ struct R: Rswift.Validatable {
       static let pleaseTryAgain = Rswift.StringResource(key: "Please try again", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: You cannot convert the same currency. Please try again.
       static let youCannotConvertTheSameCurrencyPleaseTryAgain = Rswift.StringResource(key: "You cannot convert the same currency. Please try again.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: You cannot convert the same currency. Please try again.
-      static let yourBalanceIsInsufficientPleaseTryAgain = Rswift.StringResource(key: "Your balance is insufficient. Please try again.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.
       static let youHaveSuccessfullyConvertedToCommissionFeeIsKindlyCheckYourNewBalance = Rswift.StringResource(key: "You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: You have successfully converted %@ to %@. Kindly check your new balance.
       static let youHaveSuccessfullyConvertedToKindlyCheckYourNewBalance = Rswift.StringResource(key: "You have successfully converted %@ to %@. Kindly check your new balance.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Your amount to sell is invalid. Please try again.
       static let yourAmountToSellIsInvalidPleaseTryAgain = Rswift.StringResource(key: "Your amount to sell is invalid. Please try again.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Your balance is insufficient. Please try again.
+      static let yourBalanceIsInsufficientPleaseTryAgain = Rswift.StringResource(key: "Your balance is insufficient. Please try again.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       
       /// Value: Cancel
       static func cancel(_: Void = ()) -> String {
@@ -172,11 +172,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("You cannot convert the same currency. Please try again.", bundle: R.hostingBundle, comment: "")
       }
       
-      /// Value: You cannot convert the same currency. Please try again.
-      static func yourBalanceIsInsufficientPleaseTryAgain(_: Void = ()) -> String {
-        return NSLocalizedString("Your balance is insufficient. Please try again.", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// Value: You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.
       static func youHaveSuccessfullyConvertedToCommissionFeeIsKindlyCheckYourNewBalance(_ value1: String, _ value2: String, _ value3: String) -> String {
         return String(format: NSLocalizedString("You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
@@ -190,6 +185,11 @@ struct R: Rswift.Validatable {
       /// Value: Your amount to sell is invalid. Please try again.
       static func yourAmountToSellIsInvalidPleaseTryAgain(_: Void = ()) -> String {
         return NSLocalizedString("Your amount to sell is invalid. Please try again.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Your balance is insufficient. Please try again.
+      static func yourBalanceIsInsufficientPleaseTryAgain(_: Void = ()) -> String {
+        return NSLocalizedString("Your balance is insufficient. Please try again.", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
