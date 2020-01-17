@@ -20,40 +20,40 @@ struct CurrencyModel: Codable {
 
 // MARK: - Feature
 
-struct Currency: Codable {
-   let eur: Double?
-   let cad: Double?
-   let hkd: Double?
-   let isk: Double?
-   let php: Double?
-   let dkk: Double?
-   let huf: Double?
-   let czk: Double?
-   let aud: Double?
-   let ron: Double?
-   let sek: Double?
-   let idr: Double?
-   let inr: Double?
-   let brl: Double?
-   let rub: Double?
-   let hrk: Double?
-   let jpy: Double?
-   let thb: Double?
-   let chf: Double?
-   let sgd: Double?
-   let pln: Double?
-   let bgn: Double?
-   let tur: Double?
-   let cny: Double?
-   let nok: Double?
-   let nzd: Double?
-   let zar: Double?
-   let usd: Double?
-   let mxn: Double?
-   let ils: Double?
-   let gbp: Double?
-   let krw: Double?
-   let myr: Double?
+class Currency: Codable {
+   var eur: Double? = 0
+   var cad: Double? = 0
+   var hkd: Double? = 0
+   var isk: Double? = 0
+   var php: Double? = 0
+   var dkk: Double? = 0
+   var huf: Double? = 0
+   var czk: Double? = 0
+   var aud: Double? = 0
+   var ron: Double? = 0
+   var sek: Double? = 0
+   var idr: Double? = 0
+   var inr: Double? = 0
+   var brl: Double? = 0
+   var rub: Double? = 0
+   var hrk: Double? = 0
+   var jpy: Double? = 0
+   var thb: Double? = 0
+   var chf: Double? = 0
+   var sgd: Double? = 0
+   var pln: Double? = 0
+   var bgn: Double? = 0
+   var tur: Double? = 0
+   var cny: Double? = 0
+   var nok: Double? = 0
+   var nzd: Double? = 0
+   var zar: Double? = 0
+   var usd: Double? = 0
+   var mxn: Double? = 0
+   var ils: Double? = 0
+   var gbp: Double? = 0
+   var krw: Double? = 0
+   var myr: Double? = 0
    
    enum CodingKeys: String, CodingKey {
       case eur = "EUR"
@@ -90,11 +90,4 @@ struct Currency: Codable {
       case krw = "KRW"
       case myr = "MYR"
    }
-}
-
-
-struct CurrencyExchangeModel {
-   var model: CurrencyModel?
-   let fee: Double = 0.007
-   var transactionCount: Int = 0
 }

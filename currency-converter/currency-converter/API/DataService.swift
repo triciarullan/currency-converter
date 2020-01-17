@@ -16,13 +16,13 @@ struct DataService {
    static let shared = DataService()
    
    // MARK: - URL
-   private var trackURL = "https://api.exchangeratesapi.io/latest?base="
+   private var currencyExchangeURL = "https://api.exchangeratesapi.io/latest?base="
    
    // MARK: - Services
    
    func getCurrencyExchange(_ baseCurrency: String) -> Promise<CurrencyModel> {
       return Promise { seal in
-         let url = "\(trackURL)\(baseCurrency)"
+         let url = "\(currencyExchangeURL)\(baseCurrency)"
          Alamofire.request(url)
             .validate()
             .responseJSON { response in

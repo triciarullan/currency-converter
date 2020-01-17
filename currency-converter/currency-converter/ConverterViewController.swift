@@ -10,13 +10,17 @@ import UIKit
 import SnapKit
 import Foundation
 
+enum TransactionType {
+   case none
+   case success
+   case error
+}
+
 class ConverterViewController: UIViewController {
    
    private struct Constants {
-      static let trackCellRowHeight: CGFloat = 60
+      static let currencyRowHeight: CGFloat = 60
       static let screenHeight: CGFloat = UIScreen.main.bounds.height
-      static let alertTitle = "Currency Converted"
-      static let alertMessageFail = "You cannot convert the same currency. Please try again."
    }
    
    @IBOutlet private weak var collectionView: UICollectionView!
@@ -26,13 +30,25 @@ class ConverterViewController: UIViewController {
    @IBOutlet private weak var pickerContainerView: UIView!
    
    var viewModel: CurrencyViewModel!
+   var collectionViewModel: CurrencyBalanceCollectionViewModel!
+   
+   private var transactionType: TransactionType = .none
    
    override func viewDidLoad() {
       super.viewDidLoad()
       
-      configureTableView()
-      setupViewModel()
       configureViews()
+      setupViewModel()
+   }
+   
+   private func setupViewModel() {
+      collectionViewModel = CurrencyBalanceCollectionViewModel()
+      collectionViewModel.delegate = self
+      
+      viewModel = CurrencyViewModel()
+      viewModel.delegate = self
+      viewModel.getCurrencyExchangeFromAPI()
+      viewModel.recordModel = collectionViewModel.recordCurrency
    }
 
    private func configureTableView() {
@@ -40,20 +56,16 @@ class ConverterViewController: UIViewController {
       tableView.register(R.nib.converterReceiveTableViewCell)
    }
    
-   private func setupViewModel() {
-      viewModel = CurrencyViewModel()
-      viewModel.delegate = self
-      viewModel.getCurrencyExchangeFromAPI()
+   private func configureCollectionView() {
+      collectionView.register(R.nib.currencyBalanceCollectionViewCell)
    }
    
    private func configureViews() {
-      submitBtn.layer.cornerRadius = submitBtn.frame.height / 2
-      
-      configurePickerView()
-   }
+      title = R.string.localizable.currencyConverter()
+      submitBtn.layer.cornerRadius = 5
    
-   private func configurePickerView() {
-      
+      configureTableView()
+      configureCollectionView()
    }
    
    private func hidePickerView() {
@@ -80,11 +92,21 @@ class ConverterViewController: UIViewController {
    }
    
    private func showAlertMessage(_ message: String) {
-      let alert = UIAlertController(title: Constants.alertTitle,
+      let alert = UIAlertController(title: R.string.localizable.currencyConverted(),
                                     message: message,
                                     preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Done",
-                                    style: .cancel, handler: nil))
+      
+      var title = R.string.localizable.done()
+      var style: UIAlertAction.Style = .default
+      switch transactionType {
+      case .error:
+         title = R.string.localizable.cancel()
+         style = .cancel
+      default: break
+      }
+      
+      alert.addAction(UIAlertAction(title: title,
+                                    style: style, handler: nil))
       present(alert, animated: true)
    }
    
@@ -93,8 +115,7 @@ class ConverterViewController: UIViewController {
    @IBAction private func didTapSubmit(_ sender: Any) {
       view.endEditing(true)
       pickerContainerView.isHidden = true
-      
-      viewModel.convertSelectedCurrencyExchange()
+      viewModel.submitSelectedCurrencyExchanage()
    }
    
    @IBAction private func didTapDismiss(_ sender: Any) {
@@ -136,7 +157,7 @@ extension ConverterViewController: UITableViewDelegate {
    }
    
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      return Constants.trackCellRowHeight
+      return Constants.currencyRowHeight
    }
    
    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -178,16 +199,25 @@ extension ConverterViewController: UIPickerViewDataSource {
 // MARK: - CurrencyViewModelDelegate
 
 extension ConverterViewController: CurrencyViewModelDelegate {
+   func currencyViewModelDidExchangeCurrencySuccess(_ viewModel: CurrencyViewModel, currency: Currency, transactionCount: Int, message: String) {
+      collectionViewModel.recordCurrency = currency
+      collectionViewModel.transactionCount = transactionCount
+      
+      transactionType = .success
+      showAlertMessage(message)
+   }
+   
+   func currencyViewModelDidExchangeCurrencyFail(_ viewModel: CurrencyViewModel, message: String) {
+      transactionType = .error
+      showAlertMessage(message)
+   }
+   
    func currencyViewModelDidTapTextField(_ viewModel: CurrencyViewModel) {
       hidePickerView()
    }
    
    func currencyViewModelNeedsReloadData(_ viewModel: CurrencyViewModel) {
       reloadTableRow()
-   }
-   
-   func currencyViewModelDidSubmitCurrencyExchange(_ viewModel: CurrencyViewModel, message: String) {
-      showAlertMessage(message)
    }
    
    func currencyViewModelDidTapCurrencyPicker(_ viewModel: CurrencyViewModel, row: Int) {
@@ -202,5 +232,52 @@ extension ConverterViewController: CurrencyViewModelDelegate {
    
    func currencyViewModelDidTapCurrencyPicker(_ viewModel: CurrencyViewModel) {
       showPickerView()
+   }
+}
+
+extension ConverterViewController: CurrencyBalanceCollectionViewModelDelegate {
+   func currencyBalanceCollectionViewModelNeedsReload(_ viewModel: CurrencyBalanceCollectionViewModel) {
+      DispatchQueue.main.async { [weak self] in
+         self?.collectionView.reloadData()
+      }
+   }
+   
+   func currencyBalanceCollectionViewModelDidUpdate(viewModel model: CurrencyBalanceCollectionViewModel, recordCurrency: Currency) {
+      viewModel.recordModel = recordCurrency
+   }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension ConverterViewController: UICollectionViewDataSource {
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+      return collectionViewModel.sectionModels[section].items.count
+   }
+   
+   func numberOfSections(in collectionView: UICollectionView) -> Int {
+      return collectionViewModel.sectionModels.count
+   }
+   
+   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      let itemModel = collectionViewModel.itemModel(at: indexPath)
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemModel.reuseIdentifier, for: indexPath)
+      if let cell = cell as? CurrencyBalanceItemModelBindableType {
+         cell.setItemModel(itemModel)
+      }
+      
+      return cell
+   }
+   
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension ConverterViewController: UICollectionViewDelegateFlowLayout {
+   func collectionView(_ collectionView: UICollectionView,
+                       layout collectionViewLayout: UICollectionViewLayout,
+                       sizeForItemAt indexPath: IndexPath) -> CGSize {
+      
+      return CGSize(width: 100, height: 30)
    }
 }

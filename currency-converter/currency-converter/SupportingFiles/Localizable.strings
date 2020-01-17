@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  currency-converter
+
+  Created by Tric Rullan on 1/17/20.
+  Copyright © 2020 Tric. All rights reserved.
+*/
+
+// VC Title
+"Currency Converter" = "Currency Converter";
+
+// Alert Title
+"Currency Converted" = "Currency Converted";
+
+// Alert Message Error
+"You cannot convert the same currency. Please try again." = "You cannot convert the same currency. Please try again.";
+"Your balance is insufficient. Please try again." = "You cannot convert the same currency. Please try again.";
+"Your amount to sell is invalid. Please try again." = "Your amount to sell is invalid. Please try again.";
+"Please try again" = "Please try again";
+
+// Alert Message Success
+"You have successfully converted %@ to %@. Kindly check your new balance." = "You have successfully converted %@ to %@. Kindly check your new balance.";
+"You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance." = "You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.";
+
+// Button Titles
+"Done" = "Done";
+"Cancel" = "Cancel";

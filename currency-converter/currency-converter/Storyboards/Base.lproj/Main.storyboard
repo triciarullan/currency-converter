@@ -151,6 +151,10 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Rf1-sj-7cb"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="e9r-hO-noi"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOf-fR-08f">
                                 <rect key="frame" x="40" y="375" width="334" height="50"/>

@@ -43,12 +43,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `ConverterReceiveTableViewCell`.
     static let converterReceiveTableViewCell = _R.nib._ConverterReceiveTableViewCell()
     /// Nib `ConverterSellTableViewCell`.
     static let converterSellTableViewCell = _R.nib._ConverterSellTableViewCell()
+    /// Nib `CurrencyBalanceCollectionViewCell`.
+    static let currencyBalanceCollectionViewCell = _R.nib._CurrencyBalanceCollectionViewCell()
     
     /// `UINib(name: "ConverterReceiveTableViewCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.converterReceiveTableViewCell) instead")
@@ -62,6 +64,12 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.converterSellTableViewCell)
     }
     
+    /// `UINib(name: "CurrencyBalanceCollectionViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.currencyBalanceCollectionViewCell) instead")
+    static func currencyBalanceCollectionViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.currencyBalanceCollectionViewCell)
+    }
+    
     static func converterReceiveTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ConverterReceiveTableViewCell? {
       return R.nib.converterReceiveTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ConverterReceiveTableViewCell
     }
@@ -70,11 +78,17 @@ struct R: Rswift.Validatable {
       return R.nib.converterSellTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ConverterSellTableViewCell
     }
     
+    static func currencyBalanceCollectionViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencyBalanceCollectionViewCell? {
+      return R.nib.currencyBalanceCollectionViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencyBalanceCollectionViewCell
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `CurrencyBalanceCollectionViewCell`.
+    static let currencyBalanceCollectionViewCell: Rswift.ReuseIdentifier<CurrencyBalanceCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "CurrencyBalanceCollectionViewCell")
     /// Reuse identifier `converterReceiveTableViewCell`.
     static let converterReceiveTableViewCell: Rswift.ReuseIdentifier<ConverterReceiveTableViewCell> = Rswift.ReuseIdentifier(identifier: "converterReceiveTableViewCell")
     /// Reuse identifier `converterSellTableViewCell`.
@@ -98,6 +112,87 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Main", bundle: ...)`
     static func main(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    /// This `R.string.localizable` struct is generated, and contains static references to 10 localization keys.
+    struct localizable {
+      /// Value: Cancel
+      static let cancel = Rswift.StringResource(key: "Cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Currency Converted
+      static let currencyConverted = Rswift.StringResource(key: "Currency Converted", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Currency Converter
+      static let currencyConverter = Rswift.StringResource(key: "Currency Converter", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Done
+      static let done = Rswift.StringResource(key: "Done", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Please try again
+      static let pleaseTryAgain = Rswift.StringResource(key: "Please try again", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: You cannot convert the same currency. Please try again.
+      static let youCannotConvertTheSameCurrencyPleaseTryAgain = Rswift.StringResource(key: "You cannot convert the same currency. Please try again.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: You cannot convert the same currency. Please try again.
+      static let yourBalanceIsInsufficientPleaseTryAgain = Rswift.StringResource(key: "Your balance is insufficient. Please try again.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.
+      static let youHaveSuccessfullyConvertedToCommissionFeeIsKindlyCheckYourNewBalance = Rswift.StringResource(key: "You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: You have successfully converted %@ to %@. Kindly check your new balance.
+      static let youHaveSuccessfullyConvertedToKindlyCheckYourNewBalance = Rswift.StringResource(key: "You have successfully converted %@ to %@. Kindly check your new balance.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Your amount to sell is invalid. Please try again.
+      static let yourAmountToSellIsInvalidPleaseTryAgain = Rswift.StringResource(key: "Your amount to sell is invalid. Please try again.", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      
+      /// Value: Cancel
+      static func cancel(_: Void = ()) -> String {
+        return NSLocalizedString("Cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Currency Converted
+      static func currencyConverted(_: Void = ()) -> String {
+        return NSLocalizedString("Currency Converted", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Currency Converter
+      static func currencyConverter(_: Void = ()) -> String {
+        return NSLocalizedString("Currency Converter", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Done
+      static func done(_: Void = ()) -> String {
+        return NSLocalizedString("Done", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: Please try again
+      static func pleaseTryAgain(_: Void = ()) -> String {
+        return NSLocalizedString("Please try again", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: You cannot convert the same currency. Please try again.
+      static func youCannotConvertTheSameCurrencyPleaseTryAgain(_: Void = ()) -> String {
+        return NSLocalizedString("You cannot convert the same currency. Please try again.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: You cannot convert the same currency. Please try again.
+      static func yourBalanceIsInsufficientPleaseTryAgain(_: Void = ()) -> String {
+        return NSLocalizedString("Your balance is insufficient. Please try again.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// Value: You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.
+      static func youHaveSuccessfullyConvertedToCommissionFeeIsKindlyCheckYourNewBalance(_ value1: String, _ value2: String, _ value3: String) -> String {
+        return String(format: NSLocalizedString("You have successfully converted %@ to %@. Commission Fee is %@.Kindly check your new balance.", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2, value3)
+      }
+      
+      /// Value: You have successfully converted %@ to %@. Kindly check your new balance.
+      static func youHaveSuccessfullyConvertedToKindlyCheckYourNewBalance(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("You have successfully converted %@ to %@. Kindly check your new balance.", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Value: Your amount to sell is invalid. Please try again.
+      static func yourAmountToSellIsInvalidPleaseTryAgain(_: Void = ()) -> String {
+        return NSLocalizedString("Your amount to sell is invalid. Please try again.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
     }
     
     fileprivate init() {}
@@ -165,6 +260,20 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "icon_drop_down", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_drop_down' is used in nib 'ConverterSellTableViewCell', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _CurrencyBalanceCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = CurrencyBalanceCollectionViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "CurrencyBalanceCollectionViewCell"
+      let name = "CurrencyBalanceCollectionViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CurrencyBalanceCollectionViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CurrencyBalanceCollectionViewCell
       }
       
       fileprivate init() {}
