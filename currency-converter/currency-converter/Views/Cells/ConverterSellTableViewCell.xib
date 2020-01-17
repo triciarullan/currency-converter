@@ -20,33 +20,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_sell" translatesAutoresizingMaskIntoConstraints="NO" id="Jgi-cK-vOG">
-                        <rect key="frame" x="21" y="11.5" width="38" height="38"/>
+                        <rect key="frame" x="21" y="14" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="38" id="c2c-KC-GzY"/>
-                            <constraint firstAttribute="height" constant="38" id="g6C-b2-82A"/>
+                            <constraint firstAttribute="width" constant="30" id="c2c-KC-GzY"/>
+                            <constraint firstAttribute="height" constant="30" id="g6C-b2-82A"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtA-DP-2ls">
-                        <rect key="frame" x="71" y="20" width="25" height="21"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                        <rect key="frame" x="63" y="20" width="23" height="17.5"/>
+                        <fontDescription key="fontDescription" name="Charter-Roman" family="Charter" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jT-bQ-ukA">
-                        <rect key="frame" x="239" y="20" width="29" height="20.5"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                        <rect key="frame" x="241" y="20" width="27" height="17.5"/>
+                        <fontDescription key="fontDescription" name="Charter-Roman" family="Charter" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_drop_down" translatesAutoresizingMaskIntoConstraints="NO" id="QZH-tA-e2U">
-                        <rect key="frame" x="276" y="20.5" width="20" height="20"/>
+                        <rect key="frame" x="276" y="19" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="DEW-2I-5I3"/>
                             <constraint firstAttribute="height" constant="20" id="MCL-oI-dLN"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXB-lm-apF">
-                        <rect key="frame" x="239" y="8" width="76" height="44"/>
+                        <rect key="frame" x="241" y="8" width="74" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="TK4-Vz-Dqs"/>
                         </constraints>
@@ -55,9 +55,9 @@
                         </connections>
                     </button>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1000" textAlignment="right" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SOJ-lA-5dk">
-                        <rect key="frame" x="111" y="14" width="120" height="32.5"/>
+                        <rect key="frame" x="101" y="14" width="130" height="29.5"/>
                         <nil key="textColor"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="Charter-Bold" family="Charter" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         <connections>
                             <action selector="textFieldDidChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="cSm-Qq-m75"/>
@@ -70,7 +70,7 @@
                     <constraint firstAttribute="trailing" secondItem="iXB-lm-apF" secondAttribute="trailing" constant="5" id="1EM-H3-zL4"/>
                     <constraint firstItem="9jT-bQ-ukA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="278-Te-a6D"/>
                     <constraint firstItem="QZH-tA-e2U" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-8" id="Dc0-sy-95Q"/>
-                    <constraint firstItem="9jT-bQ-ukA" firstAttribute="leading" secondItem="SOJ-lA-5dk" secondAttribute="trailing" constant="8" id="Fqv-yo-7Jb"/>
+                    <constraint firstItem="9jT-bQ-ukA" firstAttribute="leading" secondItem="SOJ-lA-5dk" secondAttribute="trailing" constant="10" id="Fqv-yo-7Jb"/>
                     <constraint firstItem="xtA-DP-2ls" firstAttribute="centerY" secondItem="Jgi-cK-vOG" secondAttribute="centerY" id="Lht-kY-nfT"/>
                     <constraint firstItem="iXB-lm-apF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="SQB-22-KXK"/>
                     <constraint firstItem="QZH-tA-e2U" firstAttribute="centerY" secondItem="9jT-bQ-ukA" secondAttribute="centerY" id="Tdp-eW-v9X"/>
@@ -81,7 +81,7 @@
                     <constraint firstItem="QZH-tA-e2U" firstAttribute="leading" secondItem="9jT-bQ-ukA" secondAttribute="trailing" constant="8" id="m6k-gL-ILX"/>
                     <constraint firstItem="xtA-DP-2ls" firstAttribute="leading" secondItem="Jgi-cK-vOG" secondAttribute="trailing" constant="12" id="n5Y-U3-qlC"/>
                     <constraint firstItem="Jgi-cK-vOG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="sGW-wR-QFo"/>
-                    <constraint firstItem="iXB-lm-apF" firstAttribute="leading" secondItem="SOJ-lA-5dk" secondAttribute="trailing" constant="8" id="wtV-Iw-WYq"/>
+                    <constraint firstItem="iXB-lm-apF" firstAttribute="leading" secondItem="SOJ-lA-5dk" secondAttribute="trailing" constant="10" id="wtV-Iw-WYq"/>
                     <constraint firstItem="SOJ-lA-5dk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="x9D-o7-Glf"/>
                 </constraints>
             </tableViewCellContentView>

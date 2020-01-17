@@ -19,6 +19,6 @@ struct CurrencyBalanceCollectionCellViewModel {
    private let currency: String
    
    var balance: String {
-      return "\(amount) \(currency)"
+      return "\(amount.rounded(toPlaces: 4)) \(currency)"
    }
 }

@@ -20,6 +20,9 @@ class ConverterViewController: UIViewController {
    
    private struct Constants {
       static let currencyRowHeight: CGFloat = 60
+      static let collectionViewHeight: CGFloat = 230
+      static let cornerRadius: CGFloat = 5
+      static let vcTitleFont: UIFont = UIFont(name: "Charter-Bold", size: 16)!
       static let screenHeight: CGFloat = UIScreen.main.bounds.height
    }
    
@@ -62,7 +65,8 @@ class ConverterViewController: UIViewController {
    
    private func configureViews() {
       title = R.string.localizable.currencyConverter()
-      submitBtn.layer.cornerRadius = 5
+      navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: Constants.vcTitleFont]
+      submitBtn.layer.cornerRadius = Constants.cornerRadius
    
       configureTableView()
       configureCollectionView()
@@ -278,6 +282,7 @@ extension ConverterViewController: UICollectionViewDelegateFlowLayout {
                        layout collectionViewLayout: UICollectionViewLayout,
                        sizeForItemAt indexPath: IndexPath) -> CGSize {
       
-      return CGSize(width: 100, height: 30)
+      let width = collectionView.frame.size.width / 3
+      return CGSize(width: width, height: Constants.collectionViewHeight)
    }
 }

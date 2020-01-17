@@ -232,6 +232,48 @@ class CurrencyViewModel {
                                                          message: transactionErrorTypeMessage)
    }
    
+   @objc private func updateCurrencyExchange() {
+      
+      guard let baseCurrency = CurrencyExchange(rawValue: pickerCurrencyData[pickerCurrencySellRowPath])?.rawValue else {
+         return
+      }
+      
+      dataService?.getCurrencyExchange(baseCurrency)
+         .done { model -> Void in
+            self.convertSelectedCurrencyExchange()
+            self.currencyModel = model
+         }
+         .catch { error in
+            //Handle error or give feedback to the user
+            print(error.localizedDescription)
+      }
+   }
+   
+   // MARK: - Functions
+   
+   func itemModel(at indexPath: IndexPath) -> CurrencyItemModel {
+      return sectionModels[indexPath.section].items[indexPath.row]
+   }
+   
+   func didUpdatePickerCurrencySell(row: Int) {
+      pickerCurrency = .sell
+      pickerCurrencySellRowPath = row
+      sectionModels = makeSectionModels()
+   }
+   
+   func didUpdatePickerCurrencyReceive(row: Int) {
+      pickerCurrency = .receive
+      pickerCurrencyReceiveRowPath = row
+      sectionModels = makeSectionModels()
+   }
+   
+   func getCurrencyExchangeFromAPI() {
+      timer = Timer.scheduledTimer(timeInterval: 5,
+                                   target: self,
+                                   selector: #selector(updateCurrencyExchange),
+                                   userInfo: nil, repeats: true)
+   }
+   
    func submitSelectedCurrencyExchanage() {
       
       guard !isError() else {
@@ -821,48 +863,6 @@ class CurrencyViewModel {
       amountToReceive = (convertedRate * Double(amountToSell)).rounded(toPlaces: 4)
       sectionModels = makeSectionModels()
    }
-   
-   @objc private func updateCurrencyExchange() {
-      
-      guard let baseCurrency = CurrencyExchange(rawValue: pickerCurrencyData[pickerCurrencySellRowPath])?.rawValue else {
-         return
-      }
-      
-      dataService?.getCurrencyExchange(baseCurrency)
-         .done { model -> Void in
-            self.convertSelectedCurrencyExchange()
-            self.currencyModel = model
-         }
-         .catch { error in
-            //Handle error or give feedback to the user
-            print(error.localizedDescription)
-      }
-   }
-   
-   // MARK: - Functions
-   
-   func itemModel(at indexPath: IndexPath) -> CurrencyItemModel {
-      return sectionModels[indexPath.section].items[indexPath.row]
-   }
-   
-   func didUpdatePickerCurrencySell(row: Int) {
-      pickerCurrency = .sell
-      pickerCurrencySellRowPath = row
-      sectionModels = makeSectionModels()
-   }
-   
-   func didUpdatePickerCurrencyReceive(row: Int) {
-      pickerCurrency = .receive
-      pickerCurrencyReceiveRowPath = row
-      sectionModels = makeSectionModels()
-   }
-   
-   func getCurrencyExchangeFromAPI() {
-      timer = Timer.scheduledTimer(timeInterval: 5,
-                                   target: self,
-                                   selector: #selector(updateCurrencyExchange),
-                                   userInfo: nil, repeats: true)
-   }
 }
    
 // MARK: - ConverterSellTableCellViewModelDelegate
@@ -881,13 +881,5 @@ extension CurrencyViewModel: ConverterSellTableCellViewModelDelegate {
       
       amountToSell = amount
       convertSelectedCurrencyExchange()
-   }
-}
-
-extension Double {
-   /// Rounds the double to decimal places value
-   func rounded(toPlaces places:Int) -> Double {
-      let divisor = pow(10.0, Double(places))
-      return (self * divisor).rounded() / divisor
    }
 }

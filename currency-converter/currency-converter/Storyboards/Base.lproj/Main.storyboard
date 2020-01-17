@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xid-L7-bB0">
-                                <rect key="frame" x="0.0" y="235" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="229" width="414" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="jPw-ce-KzG"/>
@@ -46,19 +46,19 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY BALANCES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUj-Bc-Wdb">
-                                <rect key="frame" x="20" y="108" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                <rect key="frame" x="20" y="108" width="374" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Charter-Bold" family="Charter" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENCY EXCHANGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4r-56-OGt">
-                                <rect key="frame" x="20" y="206.5" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                <rect key="frame" x="20" y="203.5" width="374" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Charter-Bold" family="Charter" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LBX-lS-wAH">
-                                <rect key="frame" x="20" y="136.5" width="374" height="50"/>
+                                <rect key="frame" x="20" y="133.5" width="374" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ix0-Za-U6b"/>
@@ -157,7 +157,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOf-fR-08f">
-                                <rect key="frame" x="40" y="375" width="334" height="50"/>
+                                <rect key="frame" x="40" y="369" width="334" height="50"/>
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.49411764705882355" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1Mk-Nn-5z5"/>
@@ -169,7 +169,7 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zyh-Na-PD4">
-                                <rect key="frame" x="0.0" y="475" width="414" height="387"/>
+                                <rect key="frame" x="0.0" y="469" width="414" height="393"/>
                                 <subviews>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKt-IX-qtP">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -185,7 +185,7 @@
                                         </items>
                                     </toolbar>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6P-G5-MRh">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="343"/>
+                                        <rect key="frame" x="0.0" y="44" width="414" height="349"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="BYZ-38-t0r" id="6eA-CI-Gda"/>
