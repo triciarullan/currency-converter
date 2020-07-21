@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		106F4FA024C70C5100B8D19C /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106F4F9F24C70C5100B8D19C /* CurrencyModel.swift */; };
 		107EABA523C5AC7B00EB170E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107EABA423C5AC7B00EB170E /* DataService.swift */; };
 		107EABAA23C5ADC800EB170E /* CurrencyReceiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107EABA823C5ADC800EB170E /* CurrencyReceiveTableViewCell.swift */; };
 		107EABAB23C5ADC800EB170E /* CurrencyReceiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107EABA923C5ADC800EB170E /* CurrencyReceiveTableViewCell.xib */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		106F4F9F24C70C5100B8D19C /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		107EABA423C5AC7B00EB170E /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		107EABA823C5ADC800EB170E /* CurrencyReceiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyReceiveTableViewCell.swift; sourceTree = "<group>"; };
 		107EABA923C5ADC800EB170E /* CurrencyReceiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyReceiveTableViewCell.xib; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				10B963A223C5C88400A0000B /* Currency.swift */,
+				106F4F9F24C70C5100B8D19C /* CurrencyModel.swift */,
 				107EABA123C5AC2400EB170E /* CellViewModels */,
 				107EABA023C5AC1900EB170E /* ViewModels */,
 				107EAB9F23C5AC0D00EB170E /* SectionModels */,
@@ -402,6 +405,7 @@
 				10D3341B23C45D0600A6C068 /* AppDelegate.swift in Sources */,
 				107EABB323C5BBB900EB170E /* CurrencySectionModel.swift in Sources */,
 				107EABA523C5AC7B00EB170E /* DataService.swift in Sources */,
+				106F4FA024C70C5100B8D19C /* CurrencyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

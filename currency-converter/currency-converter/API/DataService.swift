@@ -20,9 +20,10 @@ struct DataService {
    
    // MARK: - Services
    
-   func getCurrencyExchange(_ baseCurrency: String) -> Promise<CurrencyModel> {
+   func getCurrencyExchange(_ baseCurrency: String) -> Promise<Currency> {
       return Promise { seal in
          let url = "\(currencyExchangeURL)\(baseCurrency)"
+        print(url)
          Alamofire.request(url)
             .validate()
             .responseJSON { response in
@@ -31,7 +32,7 @@ struct DataService {
                   guard let data = response.data else { return }
                   do {
                      let decoder = JSONDecoder()
-                     let trackModel = try decoder.decode(CurrencyModel.self, from: data)
+                     let trackModel = try decoder.decode(Currency.self, from: data)
                      seal.fulfill(trackModel)
                   } catch let jsonError as NSError {
                      print("json error: \(jsonError.localizedDescription)")

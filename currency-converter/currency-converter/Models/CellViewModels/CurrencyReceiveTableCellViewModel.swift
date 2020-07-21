@@ -9,22 +9,22 @@
 import UIKit
 
 struct CurrencyReceiveTableCellViewModel {
-
-   init(currency: String,
-        amount: Double,
-        onTapUpdateCurrencyReceive: (() -> Void)?) {
-      self.currency = currency
-      self.amount = amount
-      self.onTapUpdateCurrencyReceive = onTapUpdateCurrencyReceive
-   }
   
-   
-   let currency: String?
-   let onTapUpdateCurrencyReceive: (() -> Void)?
-   
-   var amountText: String {
-      return "+ \(amount)"
-   }
-   
-   private let amount: Double
+  init(currency: String,
+       amount: Double,
+       onTapUpdateCurrencyReceive: (() -> Void)?) {
+    self.currency = currency
+    self.amount = amount
+    self.onTapUpdateCurrencyReceive = onTapUpdateCurrencyReceive
+  }
+  
+  
+  let currency: String?
+  let onTapUpdateCurrencyReceive: (() -> Void)?
+  
+  var amountText: String {
+    return "+ \(amount)"
+  }
+  
+  private let amount: Double
 }
